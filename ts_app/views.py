@@ -8,6 +8,7 @@ def ts_backend(request):
     template = loader.get_template('index.html')
     
     if request.method == 'GET':
+        
         ticker = request.GET.get('ticker', 'ITSA4')
         timeframe = request.GET.get('timeframe', 'W1')
         initial_period = request.GET.get('initial_period', '2025-01-01')
@@ -21,5 +22,4 @@ def ts_backend(request):
             'mpld3_result': result
         }
 
-        # return HttpResponse(f"TrendSniper analysis completed. {ticker_data}, Options: {options}, Result: {result}")
         return HttpResponse(template.render(context, request))
