@@ -24,6 +24,7 @@ def parse_input_from_backend_request(ticker_data, options_list):
         cloader = ContextLoader()
         context = cloader.add_to_context("ticker_data", ticker_data)
         context = cloader.add_to_context("options_list", options_list)
+        context = cloader.add_to_context("is_backend_request", True)
         run(context)
     except Exception as e:
         print(f"ERROR: {e}")

@@ -25,19 +25,21 @@ class DataVisualizer:
         print(f"Figure saved as {filename}")
 
     def __output_stdout(self):
-        plt.legend(loc='upper left')
-        fig_manager = plt.get_current_fig_manager()
-        fig_manager.resize(1600, 900)
         plt.show()
+    
+    def __output_mpld3(self):
         #mpld3.save_html(self.fig,"output.html")
         # mpld3.show()
-        # mpld3.save_json(self.fig, "output.json")
+        mpld3.save_json(self.fig, "output.json")
         # print(mpld3.fig_to_html(self.fig))
         
         
     def __output(self):
 
         print("Plotting chart...")
+        plt.legend(loc='upper left')
+        fig_manager = plt.get_current_fig_manager()
+        fig_manager.resize(1600, 900)
         self.__output_stdout()
 
     def __plot_single_chart(self, context, rates_dataframe):
