@@ -5,8 +5,6 @@ from django.template import loader
 
 def ts_backend(request):
     
-    # http://localhost:8000/trendsniper/?ticker=ITSA4&timeframe=D1&initial_period=2025-08-01&end_period=2025-08-30&options=adr&options=guppy&options=atr&options=macd&options=show-raw-data
-        
     if request.method == 'GET':
         ticker = request.GET.get('ticker', 'ITSA4')
         timeframe = request.GET.get('timeframe', 'W1')

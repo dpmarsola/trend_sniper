@@ -1,0 +1,6 @@
+ta
+pandas
+MetaTrader5
+matplotlib
+mpld3
+django
