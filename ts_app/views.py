@@ -8,7 +8,7 @@ def ts_backend(request):
     # http://localhost:8000/trendsniper/search?ticker=ITSA4&timeframe=W1&initial_period=2025-08-01&end_period=&options=adr&options=guppy&options=atr&options=macd&options=show-raw-data
         
     if request.method == 'GET':
-        ticker = request.GET.get('ticker', '')
+        ticker = request.GET.get('ticker', 'ITSA4')
         timeframe = request.GET.get('timeframe', 'W1')
         initial_period = request.GET.get('initial_period', '2025-01-01')
         end_period = request.GET.get('end_period', '2025-08-01')

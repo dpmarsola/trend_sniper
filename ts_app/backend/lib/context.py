@@ -1,5 +1,4 @@
 import json
-import subprocess
 
 class ContextLoader():
 
@@ -7,11 +6,11 @@ class ContextLoader():
 
     def load_context(self):
         try:
-            with open("./app/config.json", "r") as config_file:
+            with open("./ts_app/backend/config.json", "r") as config_file:
                 context_s = config_file.read()
                 self.context = json.loads(context_s)
         except (FileNotFoundError, json.JSONDecodeError):
-            print("ERROR: File config.json does not exsit or there is an Invalid JSON format in config.json.")
+            print("ERROR: File config.json does not exist or there is an Invalid JSON format in config.json.")
 
     def add_to_context(self, key, data):
         
