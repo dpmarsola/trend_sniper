@@ -13,11 +13,9 @@ def ts_backend(request):
         options = request.GET.getlist('options')
         
         ticker_data = { "ticker": ticker, "timeframe": timeframe, "initial_period": initial_period, "end_period": end_period}
-        print(f"Ticker Data: {ticker_data}, Options: {options}")
+        result = ts.parse_input_from_backend_request(ticker_data, options)
 
-        ts.parse_input_from_backend_request(ticker_data, options)
+        return HttpResponse(f"TrendSniper analysis completed. {ticker_data}, Options: {options}, Result: {result}")
 
-        return HttpResponse(f"TrendSniper analysis completed. {ticker_data}, Options: {options}")
-        
     template = loader.get_template('index.html')
     return HttpResponse(template.render())

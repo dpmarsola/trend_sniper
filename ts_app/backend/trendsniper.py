@@ -25,7 +25,7 @@ def parse_input_from_backend_request(ticker_data, options_list):
         context = cloader.add_to_context("ticker_data", ticker_data)
         context = cloader.add_to_context("options_list", options_list)
         context = cloader.add_to_context("is_backend_request", True)
-        run(context)
+        return run(context)
     except Exception as e:
         print(f"ERROR: {e}")
         sys.exit(1)
@@ -43,7 +43,10 @@ def run(context):
 
         # Visualize the data
         d_visual = DataVisualizer()
-        d_visual.execute(context, enriched_normalized_data)
+        result = d_visual.execute(context, enriched_normalized_data)
+        
+        if result != None:
+            return result
         
     except Exception as e:
         print(f"ERROR: {e}")

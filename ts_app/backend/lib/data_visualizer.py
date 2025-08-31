@@ -30,16 +30,12 @@ class DataVisualizer:
     def __output_mpld3(self):
         #mpld3.save_html(self.fig,"output.html")
         # mpld3.show()
-        mpld3.save_json(self.fig, "output.json")
-        # print(mpld3.fig_to_html(self.fig))
+        # mpld3.save_json(self.fig, "output.json")
+        return mpld3.fig_to_html(self.fig)
         
         
     def __output(self):
 
-        print("Plotting chart...")
-        plt.legend(loc='upper left')
-        fig_manager = plt.get_current_fig_manager()
-        fig_manager.resize(1600, 900)
         self.__output_stdout()
 
     def __plot_single_chart(self, context, rates_dataframe):
@@ -195,6 +191,15 @@ class DataVisualizer:
         else:
             self.__plot_separate_charts(context, rates_dataframe, self.number_of_subcharts)
             
-        self.__output()
-            
+
+        print("Plotting chart...")
+        plt.legend(loc='upper left')
+        fig_manager = plt.get_current_fig_manager()
+        fig_manager.resize(1600, 900)
+
+        if context.get("is_backend_request"):
+            return self.__output_mpld3()
+        else:
+            self.__output_stdout()
+
 
