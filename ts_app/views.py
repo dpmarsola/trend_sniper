@@ -5,6 +5,8 @@ from django.template import loader
 
 def ts_backend(request):
     
+    template = loader.get_template('index.html')
+    
     if request.method == 'GET':
         ticker = request.GET.get('ticker', 'ITSA4')
         timeframe = request.GET.get('timeframe', 'W1')
@@ -14,8 +16,10 @@ def ts_backend(request):
         
         ticker_data = { "ticker": ticker, "timeframe": timeframe, "initial_period": initial_period, "end_period": end_period}
         result = ts.parse_input_from_backend_request(ticker_data, options)
+        
+        context = {
+            'mpld3_result': result
+        }
 
-        return HttpResponse(f"TrendSniper analysis completed. {ticker_data}, Options: {options}, Result: {result}")
-
-    template = loader.get_template('index.html')
-    return HttpResponse(template.render())
+        # return HttpResponse(f"TrendSniper analysis completed. {ticker_data}, Options: {options}, Result: {result}")
+        return HttpResponse(template.render(context, request))
