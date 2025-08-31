@@ -1,0 +1,116 @@
+{
+    "params": [
+        {
+            "param_name": "adr",
+            "param_type": "indicator",
+            "param_description": "Average Daily Range",
+            "param_specific": {
+                "data": {
+                    "adr_multiplier": 1,
+                    "adr_period": 5
+                },
+                "style": {
+                    "color": "#000000",
+                    "linewidth": 0.5
+                }
+            },
+            "param_use": "disabled"
+        },
+        {
+            "param_name": "atr_smp",
+            "param_type": "indicator",
+            "param_description": "Average True Range",
+            "param_specific": {
+                "data": {
+                    "atr_multiplier": 1,
+                    "atr_period": 14
+                },
+                "style": {
+                    "color": "#6318a5",
+                    "linewidth": 0.5
+                }
+            },
+            "param_use": "disabled"
+        },
+        {
+            "param_name": "atr_exp",
+            "param_type": "indicator",
+            "param_description": "Exponential Average True Range",
+            "param_specific": {
+                "data": {
+                    "atr_multiplier": 1,
+                    "atr_period": 14
+                },
+                "style": {
+                    "color": "#f97d7d",
+                    "linewidth": 0.5
+                }
+            },
+            "param_use": "disabled"
+        },
+        {
+            "param_name": "guppy",
+            "param_type": "indicator",
+            "param_description": "Guppy Multiple Moving Averages",
+            "param_specific": {
+                "data": {
+                    "guppy_periods": [3,5,8,10,12,15,30,35,40,45,50,60]
+                },
+                "style": {
+                    "fast_line_color": "#2271fc",
+                    "slow_line_color": "#f97d7d",
+                    "fast_linewidth": 0.5,
+                    "slow_linewidth": 0.5
+                }
+            },
+            "param_use": "disabled"
+        },
+        {
+            "param_name": "cbl",
+            "param_type": "indicator",
+            "param_description": "Cumulative Buy/Sell Line",
+            "param_specific": {
+                "data": {},
+                "style": {
+                    "color": "#000000",
+                    "linewidth": 0.5
+                }
+            },
+            "param_use": "disabled"
+        },
+        {
+            "param_name": "macd",
+            "param_type": "indicator",
+            "param_description": "Moving Average Convergence Divergence",
+            "param_specific": {
+                "data": {},
+                "style": {
+                    "up_color": "#98eec4",
+                    "down_color": "#ee98a5",
+                    "width": 0.75
+                }
+            },
+            "param_use": "disabled"
+        },
+        {
+            "param_name": "chart",
+            "param_type": "chart",
+            "param_description": "Chart Settings",
+            "param_specific": {
+                "data": {},
+                "style": {
+                    "candles_up_color": "#00ab74",
+                    "candles_down_color": "#eb4d4d",
+                    "grid_color": "#d5d5d5",
+                    "background_color": "#ffffff",
+                    "style_sheet": "fivethirtyeight",
+                    "font_family": "Arial",
+                    "font_weight": "normal",
+                    "font_size": 10,
+                    "font_color": "#000000"
+                }
+            },
+            "param_use": "disabled"
+        }
+    ]
+}
