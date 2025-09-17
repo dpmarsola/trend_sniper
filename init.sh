@@ -1,4 +1,8 @@
 #!/bin/bash
+
+current_dir=$(pwd)
+export PYTHONPATH="$current_dir/venv/Lib/site-packages:$current_dir/ts_app/backend:$PYTHONPATH"
+
 ## Create a venv if it doesn't exist
 if [ ! -d "venv" ]; then
     echo "Creating virtual environment..."
