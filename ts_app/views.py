@@ -9,10 +9,10 @@ def ts_backend(request):
     
     if request.method == 'GET':
         
-        ticker = request.GET.get('ticker', 'ITSA4')
-        timeframe = request.GET.get('timeframe', 'W1')
-        initial_period = request.GET.get('initial_period', '2025-01-01')
-        end_period = request.GET.get('end_period', '2025-08-01')
+        ticker = request.GET.get('ticker')
+        timeframe = request.GET.get('timeframe')
+        initial_period = request.GET.get('initial_period')
+        end_period = request.GET.get('end_period')
         options = request.GET.getlist('options')
         
         ticker_data = { "ticker": ticker, "timeframe": timeframe, "initial_period": initial_period, "end_period": end_period}

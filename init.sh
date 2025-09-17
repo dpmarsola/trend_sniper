@@ -1,4 +1,28 @@
 #!/bin/bash
+## Create a venv if it doesn't exist
+if [ ! -d "venv" ]; then
+    echo "Creating virtual environment..."
+    python -m venv venv
+    flag_created_venv=true
+fi
+
+## Activate the venv
+## If this is a git bash shell on Windows, use source venv/Scripts/activate
+## Otherwise, use source venv/bin/activate
+if [[ "$OSTYPE" == "msys" ]]; then
+    source venv/Scripts/activate
+else
+    source venv/bin/activate
+fi
+
+if [ "$flag_created_venv" = true ]; then
+    echo "Virtual environment created and activated."
+    echo "Installing required packages..."
+    pip install --upgrade pip
+    pip install -r requirements.txt
+else
+    echo "Virtual environment activated."
+fi
 
 ## get args from command line
 SERVICE=$1
@@ -18,6 +42,9 @@ if [ -z "$SERVICE" ]; then
     echo "  End Date: The end date for the data (YYYY-MM-DD)"
     exit 1
 fi
+
+## lowercase the service name
+SERVICE=$(echo "$SERVICE" | tr '[:upper:]' '[:lower:]')
 
 if [ "$SERVICE" != "server" ] && [ "$SERVICE" != "cli" ]; then
     echo "Invalid service specified. Use 'server' or 'cli'."

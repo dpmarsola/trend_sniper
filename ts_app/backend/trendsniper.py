@@ -23,6 +23,12 @@ def parse_input_from_backend_request(ticker_data, options_list):
     try:
         cloader = ContextLoader()
         context = cloader.add_to_context("ticker_data", ticker_data)
+
+        if ticker_data.get("end_period") is None or ticker_data.get("end_period") == "":
+            from datetime import datetime, timedelta
+            tomorrow = datetime.now() + timedelta(days=1)
+            ticker_data["end_period"] = tomorrow.strftime("%Y-%m-%d")
+
         context = cloader.add_to_context("options_list", options_list)
         context = cloader.add_to_context("is_backend_request", True)
         return run(context)
