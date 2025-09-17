@@ -7,7 +7,7 @@ from datetime import datetime
 import warnings
 warnings.filterwarnings("ignore")
 import mpld3
-from ..lib.context import ContextHelper
+from lib.context import ContextHelper
 
 class DataVisualizer:
 

@@ -3,7 +3,7 @@ import pandas as pd
 from pandas.plotting import register_matplotlib_converters
 from datetime import datetime
 import pytz
-from ..lib import timeframes
+from lib import timeframes
 import json
 
 register_matplotlib_converters()

@@ -1,9 +1,9 @@
-from ..lib.indicators.adr import ADR
-from ..lib.indicators.cbl import CBL
-from ..lib.indicators.guppy import Guppy
-from ..lib.indicators.atr import ATR
-from ..lib.indicators.macd import MACD
-from ..lib.context import ContextHelper
+from lib.indicators.adr import ADR
+from lib.indicators.cbl import CBL
+from lib.indicators.guppy import Guppy
+from lib.indicators.atr import ATR
+from lib.indicators.macd import MACD
+from lib.context import ContextHelper
 
 
 class DataEnricher:

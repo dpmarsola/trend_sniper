@@ -1,4 +1,5 @@
 import json
+import sys
 
 class ContextLoader():
 
@@ -6,9 +7,13 @@ class ContextLoader():
 
     def load_context(self):
         try:
-            with open("./ts_app/backend/config.json", "r") as config_file:
-                context_s = config_file.read()
-                self.context = json.loads(context_s)
+            for p in sys.path:
+                if p.endswith('backend'):
+                    print(f"Loading config.json from path: {p}/config.json")
+                    with open(f"{p}/config.json", "r") as config_file:
+                        context_s = config_file.read()
+                        self.context = json.loads(context_s)
+                    break
         except (FileNotFoundError, json.JSONDecodeError):
             print("ERROR: File config.json does not exist or there is an Invalid JSON format in config.json.")
 

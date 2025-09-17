@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 import sys 
 import json
-from .lib.data_enricher import DataEnricher
-from .lib.data_visualizer import DataVisualizer 
-from .lib.data_normalizer import DataNormalizer
-from .lib.context import ContextLoader 
-from .lib.cli_handler import CLIHandler
+from lib.data_enricher import DataEnricher
+from lib.data_visualizer import DataVisualizer 
+from lib.data_normalizer import DataNormalizer
+from lib.context import ContextLoader 
+from lib.cli_handler import CLIHandler
 
 def parse_input_from_cli_request(sys):
 

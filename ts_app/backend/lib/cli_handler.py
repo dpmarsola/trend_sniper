@@ -1,8 +1,8 @@
 import json
 from datetime import datetime, timedelta
 import pytz
-from ..lib import timeframes
-from ..lib.context import ContextHelper
+from lib import timeframes
+from lib.context import ContextHelper
 
 class CLIHandler:
     
