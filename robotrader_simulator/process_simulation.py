@@ -5,27 +5,26 @@ def process_cycle(simulation_id, period):
     
     status = dmaker.check_status_positioned(simulation_id)
     
-    if status == "positioned":
-        print("hello positioned")
-        # positioned_short_or_long = logic_to_check_how_positioned_short_or_long
-        # check_stay_or_get_out(positioned_short_or_long)
-        
-    if status == "not_positioned":
+    if status["positioned"] == True:
+        print("is positioned")
+        print(status)
+        check_stay_or_get_out(status["position_type"], period)
+    else:
         check_stay_or_get_in(period)
         
 
-def check_stay_or_get_out(positioned_short_or_long):
+def check_stay_or_get_out(positioned_short_or_long, period):
 
-    decision = logic_to_check_stay_or_get_out
+    decision = dmaker.check_stay_or_get_out(period)
     
     if decision == "get_out":
         
-        if positioned_short_or_long == "short":
+        if positioned_short_or_long.lower() == "short":
             
             signal = "buy"
             perform_operation(signal)
     
-        if positioned_short_or_long == "long":
+        if positioned_short_or_long.lower() == "long":
             
             signal = "sell"
             perform_operation(signal)
@@ -43,12 +42,12 @@ def check_stay_or_get_in(period):
        
         print(how_to_position)
         
-        if how_to_position == "short":
+        if how_to_position.lower() == "short":
             
             signal = "sell"
             perform_operation(signal)
     
-        if how_to_position == "long":
+        if how_to_position.lower() == "long":
             
             signal = "buy"
             perform_operation(signal)

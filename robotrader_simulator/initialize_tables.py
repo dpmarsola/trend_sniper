@@ -14,6 +14,6 @@ def initialize_tables(start_date, end_date, frequency, asset, initial_balance):
         sim.insert_simulation_data((simulation_id, start_date, end_date, frequency, asset, initial_balance, initial_balance))
         account_id = simulation_id.replace("sim", "acc")
         account_name = asset
-        acc.insert_account_position_data((account_id, account_name, 0, simulation_id))
+        acc.insert_account_position_data((account_id, account_name, "NA", 0, simulation_id))
         
     return simulation_id

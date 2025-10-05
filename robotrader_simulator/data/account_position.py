@@ -6,7 +6,7 @@ def insert_account_position_data(account_data):
     try:
         with sqlite3.connect(f'./data/{parms.DATABASE_NAME}') as conn:
             cursor = conn.cursor()
-            result = cursor.execute(f'INSERT INTO {parms.ACCOUNT_POSITION_TABLE} VALUES (:account_id, :account_name, :cash_position, :simulation_id)', account_data)
+            result = cursor.execute(f'INSERT INTO {parms.ACCOUNT_POSITION_TABLE} VALUES (:account_id, :account_name, :position_type, :position, :simulation_id)', account_data)
             conn.commit()
             return result
     except Exception as e:
