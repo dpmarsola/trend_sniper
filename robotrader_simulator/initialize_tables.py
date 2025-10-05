@@ -9,9 +9,7 @@ def initialize_tables(start_date, end_date, frequency, asset, initial_balance):
     formmatted_date = curr_date.strftime("%Y%m%d_%H%M")
     simulation_id = f'sim_{formmatted_date}'
     result = sim.select_simulation_data_by_id(simulation_id)
-    
-    print(result)
-
+ 
     if result == None:
         sim.insert_simulation_data((simulation_id, start_date, end_date, frequency, asset, initial_balance, initial_balance))
         account_id = simulation_id.replace("sim", "acc")

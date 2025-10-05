@@ -16,5 +16,4 @@ simulation_id = initab.initialize_tables(start_date, end_date, frequency, asset,
 periods_range = pd.date_range(start=start_date, end=end_date, freq=frequency)
 
 for period in periods_range:
-    print(period)
-    ps.process_cycle(simulation_id)
+    ps.process_cycle(simulation_id, period)

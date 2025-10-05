@@ -1,8 +1,9 @@
-import check_status_positioned as chk_status
+import decision_maker as dm
 
-def process_cycle(simulation_id):
+dmaker = dm.Decision_Maker()
+def process_cycle(simulation_id, period):
     
-    status = chk_status.check_status_positioned(simulation_id)
+    status = dmaker.check_status_positioned(simulation_id)
     
     if status == "positioned":
         print("hello positioned")
@@ -10,8 +11,7 @@ def process_cycle(simulation_id):
         # check_stay_or_get_out(positioned_short_or_long)
         
     if status == "not_positioned":
-        print("world not positioned")
-        # check_stay_or_get_in
+        check_stay_or_get_in(period)
         
 
 def check_stay_or_get_out(positioned_short_or_long):
@@ -33,20 +33,22 @@ def check_stay_or_get_out(positioned_short_or_long):
         # perform accountability
     
 
-def check_stay_or_get_in():
+def check_stay_or_get_in(period):
 
-    decision = logic_to_check_stay_or_get_in
+    decision = dmaker.check_stay_or_get_in(period)
     
-    if decision == "get_int":
+    if decision == "get_in":
+       
+        how_to_position = dmaker.decide_to_position_short_or_long()
+       
+        print(how_to_position)
         
-        how_to_position = logic_to_decide_how_to_position_short_or_long
-        
-        if positioned_short_or_long == "short":
+        if how_to_position == "short":
             
             signal = "sell"
             perform_operation(signal)
     
-        if positioned_short_or_long == "long":
+        if how_to_position == "long":
             
             signal = "buy"
             perform_operation(signal)
@@ -55,8 +57,8 @@ def check_stay_or_get_in():
 def perform_operation(signal):
     
     if signal == "buy":
-        buy_logic
+        dmaker.operate(signal)
     
     if signal == "sell":
-        sell_logic
+        dmaker.operate(signal)
     
