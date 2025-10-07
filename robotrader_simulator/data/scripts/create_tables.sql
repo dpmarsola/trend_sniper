@@ -16,7 +16,8 @@ CREATE TABLE IF NOT EXISTS account_position (
     account_id TEXT PRIMARY KEY NOT NULL,
     account_name TEXT NOT NULL,
     position_type TEXT NOT NULL,
-    position NUMERIC NOT NULL,
+    position_amount NUMERIC NOT NULL,
+    position_quantity NUMERIC NOT NULL,
     simulation_id TEXT NOT NULL,
     FOREIGN KEY(simulation_id) REFERENCES simulation(simulation_id)
 );
