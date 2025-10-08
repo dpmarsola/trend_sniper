@@ -50,15 +50,12 @@ def run(context):
         if "json" in context["options_list"]:
             return enriched_normalized_data.to_json()
         else:
-            if "pandasdataframe" in context["options_list"]:
-                return enriched_normalized_data                
-            else:
-                # Visualize the data
-                d_visual = DataVisualizer()
-                result = d_visual.execute(context, enriched_normalized_data)
-                
-                if result != None:
-                    return result
+            # Visualize the data
+            d_visual = DataVisualizer()
+            result = d_visual.execute(context, enriched_normalized_data)
+            
+            if result != None:
+                return result
 
     except Exception as e:
         print(f"ERROR: {e}")

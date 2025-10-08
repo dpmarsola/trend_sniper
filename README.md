@@ -22,3 +22,13 @@ There are 2 ways of running this app:
     Example of the http request:
 
     ```/trendsniper/?ticker=ITSA4&timeframe=D1&initial_period=2025-08-01&end_period=2025-08-30&options=adr&options=guppy&options=atr&options=macd&options=show-raw-data```
+
+    The above example will return an HTML page containing the visualization for the data.
+
+    You can also request a json response in return so you can handle the data accordingly.
+
+    Just add a string "options=json"
+
+    ```/trendsniper/?ticker=ITSA4&timeframe=D1&initial_period=2025-08-01&end_period=2025-08-30&options=adr&options=guppy&options=atr&options=macd&options=json```
+
+    This will return only json data and not the HTML.
