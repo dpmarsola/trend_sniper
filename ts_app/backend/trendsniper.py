@@ -48,7 +48,7 @@ def run(context):
         enriched_normalized_data  = d_enricher.execute(context, normalized_data)
 
         if "json" in context["options_list"]:
-            return enriched_normalized_data
+            return enriched_normalized_data.to_json()
         else:
             # Visualize the data
             d_visual = DataVisualizer()
