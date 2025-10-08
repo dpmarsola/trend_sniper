@@ -1,5 +1,5 @@
 
-import process_simulation as ps
+import process as ps
 import pandas as pd
 import initialize_tables as initab
 

@@ -8,7 +8,7 @@ dmaker = dm.Decision_Maker()
 
 class Operate():
     
-    def DUMMY_send_buy_order(self, simulation_id, position_quantity, position_type, amount, asset):
+    def DUMMY_send_buy_order(self, simulation_id, position_quantity, position_type, amount, asset, period):
         
         print("buy order completed...")
         
@@ -17,7 +17,7 @@ class Operate():
         return effective_amount
  
             
-    def DUMMY_send_sell_order(self, simulation_id, position_quantity, position_type, amount, asset):
+    def DUMMY_send_sell_order(self, simulation_id, position_quantity, position_type, amount, asset, period):
         
         print("sell order completed...")
         
@@ -25,12 +25,10 @@ class Operate():
 
         return effective_amount
             
-    
-    def open_position(self, simulation_id, period, asset):
+    def open_position(self, simulation_id, period, asset, position_type):
         
         # determine the position_quantity and then execute a buy or sell operation
         exposed_amount = dmaker.determine_amount_to_expose(simulation_id)
-        position_type = dmaker.DUMMY_determine_position_type(period)
         asset_current_market_price = dmaker.DUMMY_get_asset_current_market_price(asset)
         
         # given the amount to be exposed, determine the maximum quantity that is possible to operate under current market price of this asset
@@ -46,9 +44,9 @@ class Operate():
         fitted_amount = asset_current_market_price * max_quantity_possible
                 
         if position_type == constants.LONG:
-            effective_amount = self.DUMMY_send_buy_order(simulation_id, max_quantity_possible, position_type, fitted_amount, asset)
+            effective_amount = self.DUMMY_send_buy_order(simulation_id, max_quantity_possible, position_type, fitted_amount, asset, period)
         else:
-            effective_amount = self.DUMMY_send_sell_order(simulation_id, max_quantity_possible, position_type, fitted_amount, asset)
+            effective_amount = self.DUMMY_send_sell_order(simulation_id, max_quantity_possible, position_type, fitted_amount, asset, period)
         
         if effective_amount > 0:
             # debit from simulation's current_position
@@ -61,9 +59,9 @@ class Operate():
         position_type, exposed_amount, position_quantity = dmaker.get_position_information(simulation_id)
                 
         if position_type == constants.LONG:
-            effective_amount = self.DUMMY_send_sell_order(simulation_id, position_quantity, position_type, exposed_amount, asset)
+            effective_amount = self.DUMMY_send_sell_order(simulation_id, position_quantity, position_type, exposed_amount, asset, period)
         else:
-            effective_amount = self.DUMMY_send_buy_order(simulation_id, position_quantity, position_type, exposed_amount, asset)
+            effective_amount = self.DUMMY_send_buy_order(simulation_id, position_quantity, position_type, exposed_amount, asset, period)
             
         if effective_amount > 0:
             # cretid simulation's current_position

@@ -18,8 +18,11 @@ def ts_backend(request):
         ticker_data = { "ticker": ticker, "timeframe": timeframe, "initial_period": initial_period, "end_period": end_period}
         result = ts.parse_input_from_backend_request(ticker_data, options)
         
-        context = {
-            'mpld3_result': result
-        }
+        if "json" in options:
+            return result
+        else:
+            context = {
+                'mpld3_result': result
+            }
 
-        return HttpResponse(template.render(context, request))
+            return HttpResponse(template.render(context, request))

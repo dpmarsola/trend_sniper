@@ -47,13 +47,16 @@ def run(context):
         d_enricher = DataEnricher()
         enriched_normalized_data  = d_enricher.execute(context, normalized_data)
 
-        # Visualize the data
-        d_visual = DataVisualizer()
-        result = d_visual.execute(context, enriched_normalized_data)
-        
-        if result != None:
-            return result
-        
+        if "json" in context["options_list"]:
+            return enriched_normalized_data
+        else:
+            # Visualize the data
+            d_visual = DataVisualizer()
+            result = d_visual.execute(context, enriched_normalized_data)
+            
+            if result != None:
+                return result
+
     except Exception as e:
         print(f"ERROR: {e}")
 

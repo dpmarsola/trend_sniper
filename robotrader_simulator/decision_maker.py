@@ -31,27 +31,22 @@ class Decision_Maker():
     def DUMMY_stay_or_get_in(self, period):
         
         if int(period.strftime("%d")) % 2 != 0:
-            result = constants.GET_IN
+            position_type = constants.SHORT
+            decision = constants.GET_IN
         else:
-            result = constants.STAY
+            position_type = constants.LONG
+            decision = constants.STAY
         
-        return result
+        return decision, position_type
 
     def DUMMY_stay_or_get_out(self, period):
         
         if int(period.strftime("%d")) % 2 == 0:
-            return "get_out"
+            decision = constants.GET_OUT
         else:
-            return "stay"
-    
-    def DUMMY_determine_position_type(self, period):
-
-        if int(period.strftime("%d")) % 2 == 0:
-            result = constants.LONG
-        else:
-            result = constants.SHORT
-        
-        return result
+            decision = constants.STAY
+            
+        return decision
 
     def determine_amount_to_expose(self, simulation_id):
         
