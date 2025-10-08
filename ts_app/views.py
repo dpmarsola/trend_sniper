@@ -18,7 +18,7 @@ def ts_backend(request):
         ticker_data = { "ticker": ticker, "timeframe": timeframe, "initial_period": initial_period, "end_period": end_period}
         result = ts.parse_input_from_backend_request(ticker_data, options)
 
-        if "json" in options:
+        if "json" in options or "pandasdataframe" in options:
             return HttpResponse(result)
         else:
             context = {
