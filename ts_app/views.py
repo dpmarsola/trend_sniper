@@ -19,7 +19,7 @@ def ts_backend(request):
         result = ts.parse_input_from_backend_request(ticker_data, options)
         
         if "json" in options:
-            return result
+            return HttpResponse(result)
         else:
             context = {
                 'mpld3_result': result
