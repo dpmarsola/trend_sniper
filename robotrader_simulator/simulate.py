@@ -3,8 +3,8 @@ import process as ps
 import pandas as pd
 import initialize_tables as initab
 
-start_date = '2025-01-01'
-end_date = '2025-01-11'
+start_date = '2025-08-01'
+end_date = '2025-08-11'
 frequency = 'D'
 asset = "ITSA4"
 initial_balance = 10000.00
