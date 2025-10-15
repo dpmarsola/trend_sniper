@@ -20,6 +20,8 @@ df = pd.read_json(response.text)
 
 df['datetime'] = pd.to_datetime(df['time'], unit='s')
 
+df['asset'] = ticker
+
 engine = create_engine('sqlite:///data/robotrader.db')
 
 df.to_sql(name="market_data", con=engine, if_exists='replace', index=False)

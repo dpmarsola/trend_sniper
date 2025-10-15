@@ -1,11 +1,12 @@
 import data.simulation as sim
 import data.account_position as acc
+import data.market_data as mkt
 from datetime import datetime
 import parms
 import constants
 
 
-class Decision_Maker():
+class Information():
     
     flag = True
     position_type = ""
@@ -27,26 +28,6 @@ class Decision_Maker():
             result["positioned"] = True
 
         return result 
-    
-    def DUMMY_stay_or_get_in(self, period):
-        
-        if int(period.strftime("%d")) % 2 != 0:
-            position_type = constants.SHORT
-            decision = constants.GET_IN
-        else:
-            position_type = constants.LONG
-            decision = constants.STAY
-        
-        return decision, position_type
-
-    def DUMMY_stay_or_get_out(self, period):
-        
-        if int(period.strftime("%d")) % 2 == 0:
-            decision = constants.GET_OUT
-        else:
-            decision = constants.STAY
-            
-        return decision
 
     def determine_amount_to_expose(self, simulation_id):
         
@@ -62,6 +43,17 @@ class Decision_Maker():
         
         return (position_type, exposed_amount, position_quantity)
     
-    def DUMMY_get_asset_current_market_price(self, asset):
+    def get_asset_current_market_price(self, asset, period):
         
-        return 1.49
+        try:
+            market_price = mkt.select_market_data_by_period(asset, period)
+           
+            open = market_price[1]
+            high = market_price[2]
+            low = market_price[3]
+            close = market_price[4]
+            
+            return (open, high, low, close)
+        except Exception as e:
+            return None, None, None, None
+            
