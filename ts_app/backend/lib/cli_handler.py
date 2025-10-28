@@ -26,6 +26,13 @@ class CLIHandler:
     
     def _parse_options(self, arg, context):
 
+        if "all" in arg.lower():
+            self.options_list.append("adr")
+            self.options_list.append("atr")
+            self.options_list.append("guppy")
+            self.options_list.append("cbl")
+            self.options_list.append("macd")
+            self.options_list.append("show-raw-data")
         if "adr" in arg.lower():
             self.options_list.append("adr")
         elif "atr" in arg.lower():
