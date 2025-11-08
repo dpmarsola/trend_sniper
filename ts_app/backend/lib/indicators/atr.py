@@ -1,20 +1,40 @@
+import pandas as pd
 from ta.volatility import AverageTrueRange
 
 class ATR:
 
     def calculate(self, df, number_of_periods, multiplier):
-        
         df['prev_close'] = df['close'].shift(1)
         df['true_range'] = AverageTrueRange(high=df["high"], low=df["low"], close=df["close"], window=number_of_periods)._true_range(high=df["high"], low=df["low"], prev_close=df["prev_close"])
-        
-        aux_df = df.copy()
-        df['displacement'] = df.apply(lambda x: self.__calculate_average_true_range_simple_method(aux_df, x.name - number_of_periods + 1, x.name + 1), axis=1).round(2)
+
+        counter = 0
+        sum_of_true_range = 0.0
+        atr = 0.0
+        list_of_atr = []
+
+        for idx, row in df.iterrows():
+
+            if counter < (number_of_periods - 1):
+                sum_of_true_range += row['true_range']
+            else:
+                if counter == (number_of_periods - 1):
+                    atr = sum_of_true_range / number_of_periods
+                else:
+                    atr = ((atr * (number_of_periods - 1) ) + row['true_range']) / number_of_periods
+
+            list_of_atr.append(round(atr, 2))
+            counter += 1
+
+        df['displacement'] = list_of_atr
         df['displacement'] = df['displacement'] * multiplier
         df['avg_true_range'] = (df['open'] - df['displacement'])
-
         df['avg_true_range'] = self.calculate_pivot(df)
-        df.drop(columns=['prev_close', 'true_range', 'displacement'], inplace=True)        
+        df.drop(columns=['prev_close', 'true_range', 'displacement'], inplace=True)
         return df
+
+    def teste(self, a, number):
+        print(type(a))
+
 
     def __calculate_average_true_range_simple_method(self, df, iperiod, fperiod):
 

@@ -3,11 +3,29 @@ import pandas as pd
 
 class ADR:
     
-    def calculate(self, df, multiplier):
+    def calculate(self, df, number_of_periods, multiplier):
 
         df['daily_range'] = df['high'] - df['low']
-        aux_df = df.copy()
-        df['displacement'] = df.apply(lambda x: self.__calculate_average_daily_range(aux_df, x.name - 3 + 1, x.name + 1), axis=1).round(2)
+
+        counter = 0
+        sum_of_daily_range = 0.0
+        adr = 0.0
+        list_of_adr = []
+
+        for idx, row in df.iterrows():
+
+            if counter < (number_of_periods - 1):
+                sum_of_daily_range += row['daily_range']
+            else:
+                if counter == (number_of_periods - 1):
+                    adr = sum_of_daily_range / number_of_periods
+                else:
+                    adr = ((adr * (number_of_periods - 1) ) + row['daily_range']) / number_of_periods
+
+            list_of_adr.append(round(adr, 2))
+            counter += 1
+
+        df['displacement'] = list_of_adr
         df['displacement'] = df['displacement'] * multiplier
         df['avg_daily_range'] = (df['open'] + df['displacement'])
 
