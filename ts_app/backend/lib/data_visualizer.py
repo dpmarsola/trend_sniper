@@ -51,6 +51,7 @@ class DataVisualizer:
         for opt in context.get("options_list"):
             if opt == "adr":
                 self.ax.plot(rates_dataframe['date_str'], rates_dataframe["avg_daily_range"], label='ADR', color=self.adr_color, linewidth=self.adr_linewidth)
+                self.ax.plot(rates_dataframe['date_str'], rates_dataframe["avg_daily_range_lower_band"], label='ADR', color=self.adr_color, linewidth=self.adr_linewidth)
             if opt == "atr":
                 self.ax.step(rates_dataframe['date_str'], rates_dataframe['avg_true_range'], label='ATR (Simple)', color=self.atr_smp_color, linewidth=self.atr_smp_linewidth, where='mid')
             if opt == "guppy":
@@ -90,6 +91,7 @@ class DataVisualizer:
         for opt in context.get("options_list"):
             if opt == "adr":
                 self.ax[main_chart_index].plot(rates_dataframe['date_str'], rates_dataframe["avg_daily_range"], label='ADR', color=self.adr_color, linewidth=self.adr_linewidth)
+                self.ax[main_chart_index].plot(rates_dataframe['date_str'], rates_dataframe["avg_daily_range_lower_band"], label='ADR', color=self.adr_color, linewidth=self.adr_linewidth)
             if opt == "atr":
                 self.ax[main_chart_index].step(rates_dataframe['date_str'], rates_dataframe['avg_true_range'], label='ATR (Simple)', color=self.atr_smp_color, linewidth=self.atr_smp_linewidth, where='mid')
             if opt == "guppy":

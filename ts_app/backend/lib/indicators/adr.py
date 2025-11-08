@@ -28,6 +28,7 @@ class ADR:
         df['displacement'] = list_of_adr
         df['displacement'] = df['displacement'] * multiplier
         df['avg_daily_range'] = (df['open'] + df['displacement'])
+        df['avg_daily_range_lower_band']  = (df['close'] - df['displacement'])
 
         df.drop(columns=['daily_range', 'displacement'], inplace=True)
 
