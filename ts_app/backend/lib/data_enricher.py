@@ -20,7 +20,7 @@ class DataEnricher:
                 self.adr_multiplier = c_helper.get_context_specific_data(context, "adr", "indicator", "data.adr_multiplier")
                 if self.adr_period > len(df.index):
                     raise ValueError(f"ADR period: {self.adr_period} is greater than the size of the dataframe: {len(df.index)}")
-                df = ADR().calculate(df, self.adr_period, self.adr_multiplier)
+                df = ADR().calculate(df, self.adr_multiplier)
             if opt == "atr":
                 self.atr_period = c_helper.get_context_specific_data(context, "atr_smp", "indicator", "data.atr_period")
                 self.atr_multiplier = c_helper.get_context_specific_data(context, "atr_smp", "indicator", "data.atr_multiplier")

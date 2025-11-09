@@ -3,6 +3,7 @@ import ta
 class Guppy:
 
     def calculate(self, df, ema_periods):
+
         # Fast ema periods for Guppy 
         fast_ema_1 = ema_periods[0]
         fast_ema_2 = ema_periods[1]

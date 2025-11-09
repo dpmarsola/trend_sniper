@@ -25,6 +25,7 @@ class ADR:
             list_of_adr.append(round(adr, 2))
             counter += 1
 
+
         df['displacement'] = list_of_adr
         df['displacement'] = df['displacement'] * multiplier
         df['avg_daily_range'] = (df['open'] + df['displacement'])

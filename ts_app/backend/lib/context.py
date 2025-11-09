@@ -1,4 +1,5 @@
 import json
+import os
 import sys
 
 class ContextLoader():
@@ -7,12 +8,21 @@ class ContextLoader():
 
     def load_context(self):
         try:
+            filename = ''
             for p in sys.path:
                 if p.endswith('backend'):
-                    with open(f"{p}/config.json", "r") as config_file:
+                    filename = f'{p}/config.json'
+                    with open(filename, "r") as config_file:
                         context_s = config_file.read()
                         self.context = json.loads(context_s)
-                    break
+            if f'{__file__}'.endswith('context.py'):
+                dir = os.path.dirname(__file__).split('/')
+                dir = dir[0:-1]
+                dir = '/'.join(dir)
+                filename = f'{dir}/config.json'
+                with open(filename, "r") as config_file:
+                    context_s = config_file.read()
+                    self.context = json.loads(context_s)
         except (FileNotFoundError, json.JSONDecodeError):
             print("ERROR: File config.json does not exist or there is an Invalid JSON format in config.json.")
 
