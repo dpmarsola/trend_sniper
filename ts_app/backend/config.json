@@ -93,6 +93,22 @@
             "param_use": "disabled"
         },
         {
+            "param_name": "rsi",
+            "param_type": "indicator",
+            "param_description": "Relative Strength Index",
+            "param_specific": {
+                "data": {
+                    "rsi_multiplier": 1,
+                    "rsi_period": 14
+                },
+                "style": {
+                    "color": "#000000",
+                    "linewidth": 0.5
+                }
+            },
+            "param_use": "disabled"
+        },
+        {
             "param_name": "chart",
             "param_type": "chart",
             "param_description": "Chart Settings",
